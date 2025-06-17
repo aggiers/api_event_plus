@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.event_.Domains;
 using webapi.event_.Interfaces;
@@ -69,6 +70,7 @@ namespace webapi.event_.Controllers
             }
         }
 
+        //[Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Post(Eventos evento)
         {
@@ -85,6 +87,7 @@ namespace webapi.event_.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, Eventos evento)
         {

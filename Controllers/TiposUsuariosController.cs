@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.event_.Domains;
 using webapi.event_.Interfaces;
@@ -58,6 +59,7 @@ namespace webapi.event_.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, TiposUsuarios tipoUsuario)
         {
@@ -72,6 +74,7 @@ namespace webapi.event_.Controllers
                 return BadRequest(e.Message);
             }
         }
+
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
